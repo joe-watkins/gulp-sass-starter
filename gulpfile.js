@@ -35,6 +35,6 @@ gulp.task('watch', function() {
 
 
 // Default task
-gulp.task('default', ['clean'], function() {
-    gulp.run('styles');
+gulp.task('default', function() {
+    
 });
