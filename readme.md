@@ -1,6 +1,6 @@
-# Gulp Sass Starter
+# Gulp.js Sass Starter
 
-This is a simple starter for commando Sass work. You'll need [node.js](http://nodejs.org/) and [gulp.js](http://gulpjs.com/) installed.
+This is a simple starter for commando Sass work. Great for poking around and learning how to configure gulp.js and easy to inject into projects. You'll need [node.js](http://nodejs.org/) and [gulp.js](http://gulpjs.com/) installed.
 
 ## Instructions:
  
