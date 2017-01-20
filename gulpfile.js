@@ -5,9 +5,19 @@ var gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     notify = require('gulp-notify'),
+    browserSync = require('browser-sync').create(),
     appDefaults = {
       stylesDir : "styles/" // path to styles
     }
+
+// Static server
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
+});
 
 // Styles
 gulp.task('styles', function() {
@@ -17,24 +27,24 @@ gulp.task('styles', function() {
     .pipe(gulp.dest(appDefaults.stylesDir))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
-    .pipe(gulp.dest(appDefaults.stylesDir)) 
+    .pipe(gulp.dest(appDefaults.stylesDir))
+    .pipe(browserSync.stream())
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
 
 // Watch
 gulp.task('watch', function() {
-
+  browserSync.init({
+    server: "./"
+  })
   // Watch .scss files
-  gulp.watch(appDefaults.stylesDir+'**/*.scss', function(event) {
-    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    gulp.run('styles');
-  });
-
+  gulp.watch(appDefaults.stylesDir+'**/*.scss', ['sass']);
+  gulp.watch('./*.html').on('change', browserSync.reload);
 });
 
 
 // Default task
 gulp.task('default', function() {
-    
+
 });
